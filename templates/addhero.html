@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <h1>Heroes</h1>
+                    <p>You can add, remove and edit heroes from here.</p>
+                </div>
+                <div class="col-md-6 text-right" style="line-height: 100px">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Hero</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9"></div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control pull-right" placeholder="Search">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default">Go!</button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="user-list">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">
+                            <input type="checkbox">
+                        </th>
+                        <th scope="col">Name</th>
+                        <th scope="col">AlterEgo</th>
+                        <th scope="col">Abilities</th>
+                        <th scope="col">Quote</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for hero in heroes %}
+                    <tr>
+                        <th scope="row">
+                            <input type="checkbox">
+                        </th>
+                        <td>{{ hero.realname }}</td>
+                        <td><strong>{{ hero.alterego }}</strong></td>
+                        <td>{{ hero.abilities }}</td>
+                        <td>{{ hero.quote }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal fade" id="myModal" role="dialog">
+                <form action="/uploader" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><h2>Add Hero</h2></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    {{ form.realname.label }}
+                                    {{ form.realname(class='form-control', id='realName') }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.alterego.label }}
+                                    {{ form.alterego(class='form-control', id='alterEgo') }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.abilities.label }}
+                                    {{ form.abilities(class='form-control', id='abilities') }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.quote.label }}
+                                    {{ form.quote(class='form-control', id='quote') }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.photo.label }}
+                                    {{ form.photo(id='photo') }}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                {{ form.submit(class='btn btn-primary', id='submit') }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block navitems %}
+    {{ super() }}
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="/addhero" style="padding: 0"><i class="fa fa-plus-circle fa-3x text-success" ></i></a>
+        </li>
+    </ul>
+{% endblock navitems %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            {% for hero in heroes %}
+            <div class="imgbody">
+                <div class="img-header">
+                    <div class="flexcontainer">
+                        <div class="div">
+                            <img src="{{ url_for('static', filename='img/dp.jpg', _external=True) }}" class="img-circle" alt="">
+                        </div>
+                        <div class="div2">
+                            <a href="">{{ hero.alterego }}</a>
+                        </div>
+                        <div class="div3"><i class="fa fa-ellipsis-v" style="width: 3px !important"></i></div>
+                    </div>
+                </div>
+                <div class="bgimg">
+                    <!--For the image-->
+                    <img src=" {{ hero.photo_url }} " class="img-full" alt="">
+                </div>
+                <div class="flexcontainer margdivs">
+                    <div class="loveic">
+                        <i class="fa fa-heart" style="color: transparent; -webkit-text-stroke: 1px #000; font-size: 2em;"></i>
+                    </div>
+                    <div class="shareic">
+                        <i class="fa fa-share" style="color: transparent; -webkit-text-stroke: 1px #000; font-size: 2em;"></i>
+                    </div>
+                    <div class="infoic">
+                        <i class="fa fa-info-circle" style="color: transparent; -webkit-text-stroke: 1px #000; font-size: 2em;"></i>
+                    </div>
+                </div>
+                <div class="flexcontainer">
+                    <a href="">0 people likes this.</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock main_content %}
